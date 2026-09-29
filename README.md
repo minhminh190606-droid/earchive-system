@@ -2,7 +2,7 @@
 
 ## Tiến độ hiện tại
 
-- Đã tạo backend Java 21 + Spring Boot.
+- Đã tạo backend Java 21 + Spring Boot 3.5.16.
 - Đã cấu hình PostgreSQL 17 chạy bằng Docker.
 - Đã có API kiểm tra GET /api/health.
 - Chưa triển khai bảng dữ liệu và chức năng nghiệp vụ.
