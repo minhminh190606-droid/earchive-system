@@ -12,8 +12,7 @@
 
 \- Ngày cập nhật: 30/09/2026
 
-\- Trạng thái: Bản chuẩn bị bàn giao, chưa xác nhận BA nghiệm thu
-
+\- Trạng thái: Đã đưa source và tài liệu lên main, sẵn sàng bàn giao; chưa xác nhận BA nghiệm thu.
 
 
 \## 1. Phần được giao trong đợt
@@ -98,11 +97,12 @@ https://github.com/minhminh190606-droid/earchive-system
 
 
 
-Source Swagger và bộ tài liệu đang được hoàn thiện trên
+Source Swagger và bộ tài liệu baseline đã được gộp vào main
+qua Pull Request #2 ngày 30/09/2026.
 
-nhánh feat/openapi-baseline. Cần cập nhật trạng thái bàn giao
+Pull Request: https://github.com/minhminh190606-droid/earchive-system/pull/2
 
-sau khi push và gộp Pull Request vào main.
+Bộ tài liệu sẵn sàng gửi BA; chưa xác nhận BA nghiệm thu.
 
 
 
