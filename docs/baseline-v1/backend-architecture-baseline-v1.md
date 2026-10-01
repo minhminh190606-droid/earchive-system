@@ -1,20 +1,20 @@
-\# Backend Architecture Baseline v1
+﻿# Backend Architecture Baseline v1
 
 
 
-\- Dự án: Hệ thống lưu trữ điện tử
+- Dự án: Hệ thống lưu trữ điện tử
 
-\- Thành viên: Trần Quyền Minh
+- Thành viên: Trần Quyền Minh
 
-\- Vai trò: Backend Developer / Technical Lead
+- Vai trò: Backend Developer / Technical Lead
 
-\- Đợt báo cáo: 27/09/2026 đến 03/10/2026
+- Đợt báo cáo: 27/09/2026 đến 03/10/2026
 
-\- Ngày ghi nhận hiện trạng: 30/09/2026
+- Ngày ghi nhận hiện trạng: 30/09/2026
 
 
 
-\## 1. Mục đích
+## 1. Mục đích
 
 
 
@@ -32,36 +32,23 @@ Các module nghiệp vụ chưa được triển khai.
 
 
 
-\## 2. Công nghệ hiện có
+## 2. Công nghệ hiện có
 
 
 
 | Thành phần | Công nghệ và cấu hình |
-
 |---|---|
-
 | Ngôn ngữ | Java 21 |
-
 | Framework | Spring Boot 3.5.16 |
-
 | API | Spring Web MVC, JSON |
-
 | Truy cập dữ liệu | Spring Data JPA, Hibernate; đã cấu hình, chưa có Entity/Repository nghiệp vụ |
-
 | Database | PostgreSQL 17 chạy trong Docker |
-
 | Database local | earchive\_db |
-
 | Container | earchive-postgres |
-
 | Tài liệu API | springdoc-openapi 2.8.17, Swagger UI |
-
 | Build | Maven Wrapper |
-
 | Kiểm thử | spring-boot-starter-test |
-
 | Quản lý mã nguồn | Git và GitHub |
-
 | Môi trường chạy | Backend chạy trên máy phát triển; PostgreSQL chạy trong Docker |
 
 
@@ -74,7 +61,7 @@ qua Pull Request #1.
 
 
 
-\## 3. Kiến trúc đang hoạt động
+## 3. Kiến trúc đang hoạt động
 
 
 
@@ -104,7 +91,7 @@ Log trước đó đã xác nhận kết nối thành công.
 
 
 
-\## 4. Kiến trúc mục tiêu
+## 4. Kiến trúc mục tiêu
 
 
 
@@ -114,19 +101,19 @@ nhiều tầng:
 
 
 
-\- Controller: nhận request và trả response.
+- Controller: nhận request và trả response.
 
-\- DTO: mô tả dữ liệu vào/ra API.
+- DTO: mô tả dữ liệu vào/ra API.
 
-\- Service: xử lý nghiệp vụ và điều phối.
+- Service: xử lý nghiệp vụ và điều phối.
 
-\- Repository: truy cập dữ liệu.
+- Repository: truy cập dữ liệu.
 
-\- Entity: ánh xạ dữ liệu với bảng PostgreSQL.
+- Entity: ánh xạ dữ liệu với bảng PostgreSQL.
 
-\- File Storage: lưu nội dung file tài liệu.
+- File Storage: lưu nội dung file tài liệu.
 
-\- Security: xác thực và kiểm tra quyền truy cập.
+- Security: xác thực và kiểm tra quyền truy cập.
 
 
 
@@ -148,7 +135,7 @@ hoàn chỉnh chạy qua tất cả các tầng.
 
 
 
-\## 5. Kiểm kê source và package hiện có
+## 5. Kiểm kê source và package hiện có
 
 
 
@@ -157,11 +144,8 @@ Danh sách file Java đã kiểm tra trong src/main/java:
 
 
 | Package | Lớp | Trách nhiệm |
-
 |---|---|---|
-
 | com.team5.earchive | EarchiveApplication | Khởi động Spring Boot |
-
 | com.team5.earchive.controller | HealthController | Xử lý GET /api/health |
 
 
@@ -176,59 +160,46 @@ Package trống nếu có không được tính là module đã triển khai.
 
 
 
-\## 6. Backend Module Inventory
+## 6. Backend Module Inventory
 
 
 
 | Module | Hiện trạng | Phần còn thiếu |
-
 |---|---|---|
-
 | Health | Đã có GET /api/health | Chỉ kiểm tra phản hồi backend, chưa kiểm tra các thành phần phụ thuộc |
-
 | Auth/Security | Chưa triển khai | Login, JWT và bảo vệ endpoint |
-
 | User \& Access Control | Chưa triển khai | User, role, permission, RBAC/ACL |
-
 | Document/Record | Chưa triển khai | Hồ sơ, metadata, upload, preview, download và storage |
-
 | Document Versioning | Chưa triển khai | Tạo phiên bản, danh sách phiên bản và restore |
-
 | Search/Saved Search | Chưa triển khai | Tìm kiếm, lọc, sắp xếp, phân trang và lưu điều kiện |
-
 | Audit | Chưa triển khai | Ghi nhận truy cập và sử dụng tài liệu |
-
 | Statistics | Chưa triển khai | Tổng hợp số liệu cho dashboard |
-
 | OCR | Chưa triển khai | Xử lý OCR và quy tắc fallback theo yêu cầu BA |
-
 | Signature/Integrity | Chưa triển khai | SHA-256, RSA, X.509 và kiểm tra toàn vẹn |
-
 | API Documentation | Swagger đã chạy trên máy | Hoàn thiện tài liệu và đưa baseline lên GitHub |
-
 | Error Handling | Chưa có xử lý lỗi chung tự viết | Global Exception Handling và cấu trúc phản hồi lỗi |
 
 
 
-\## 7. Cấu hình và dữ liệu
+## 7. Cấu hình và dữ liệu
 
 
 
-\- compose.yaml khai báo PostgreSQL và volume lưu dữ liệu.
+- compose.yaml khai báo PostgreSQL và volume lưu dữ liệu.
 
-\- PostgreSQL được công bố tại 127.0.0.1:5432 trên máy phát triển.
+- PostgreSQL được công bố tại 127.0.0.1:5432 trên máy phát triển.
 
-\- Backend chạy tại cổng 8080.
+- Backend chạy tại cổng 8080.
 
-\- .env chứa thông tin cấu hình riêng trên máy.
+- .env chứa thông tin cấu hình riêng trên máy.
 
-\- .gitignore loại trừ .env.
+- .gitignore loại trừ .env.
 
-\- .env.example cung cấp cấu hình mẫu để thành viên tự thiết lập.
+- .env.example cung cấp cấu hình mẫu để thành viên tự thiết lập.
 
-\- application.properties đọc cấu hình từ .env.
+- application.properties đọc cấu hình từ .env.
 
-\- spring.jpa.hibernate.ddl-auto=validate: kiểm tra ánh xạ
+- spring.jpa.hibernate.ddl-auto=validate: kiểm tra ánh xạ
 
 &#x20; Entity với database, không tự tạo hoặc sửa bảng.
 
@@ -250,19 +221,19 @@ không thay thế kho lưu file tài liệu.
 
 
 
-\## 8. Kiểm thử và bằng chứng hiện có
+## 8. Kiểm thử và bằng chứng hiện có
 
 
 
-\- Maven clean verify đã báo BUILD SUCCESS sau khi chuyển
+- Maven clean verify đã báo BUILD SUCCESS sau khi chuyển
 
 &#x20; sang Spring Boot 3.
 
-\- API GET /api/health đã trả JSON với status UP.
+- API GET /api/health đã trả JSON với status UP.
 
-\- Swagger UI thực thi GET /api/health nhận HTTP 200.
+- Swagger UI thực thi GET /api/health nhận HTTP 200.
 
-\- Đã có file xuất OpenAPI và ảnh thực thi trong baseline-v1.
+- Đã có file xuất OpenAPI và ảnh thực thi trong baseline-v1.
 
 
 
@@ -274,7 +245,7 @@ nghiệp vụ hoặc các module bảo mật chưa triển khai.
 
 
 
-\## 9. Điểm chưa hoàn chỉnh cần xử lý
+## 9. Điểm chưa hoàn chỉnh cần xử lý
 
 
 
@@ -298,15 +269,16 @@ nghiệp vụ hoặc các module bảo mật chưa triển khai.
 
 
 
-\## 10. Tài liệu liên quan
+## 10. Tài liệu liên quan
 
 
 
-\- README.md: hướng dẫn chạy backend.
+- README.md: hướng dẫn chạy backend.
 
-\- docs/baseline-v1/api-inventory-v1.md: kiểm kê API.
+- docs/baseline-v1/api-inventory-v1.md: kiểm kê API.
 
-\- docs/baseline-v1/openapi.json: tài liệu OpenAPI đã xuất.
+- docs/baseline-v1/openapi.json: tài liệu OpenAPI đã xuất.
 
-\- docs/baseline-v1/swagger-health-200.png: bằng chứng thực thi.
+- docs/baseline-v1/swagger-health-200.png: bằng chứng thực thi.
+
 
