@@ -30,6 +30,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
             HttpStatusCode status,
             WebRequest request
     ) {
+        logFailure(status.value(), "VALIDATION_ERROR", ex, request);
+
         List<FieldErrorResponse> fieldErrors = ex.getBindingResult()
                 .getFieldErrors()
                 .stream()
@@ -84,12 +86,14 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                     : "Không thể thực hiện yêu cầu.";
         };
 
-        if (httpStatus >= 500) {
-            log.error("Lỗi xử lý yêu cầu tại {}", getPath(request), ex);
-        }
+        logFailure(httpStatus, code, ex, request);
 
         ApiErrorResponse body = createError(
-                httpStatus, code, message, request, List.of()
+                httpStatus,
+                code,
+                message,
+                request,
+                List.of()
         );
 
         return new ResponseEntity<>(body, headers, status);
@@ -100,7 +104,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
             Exception ex,
             WebRequest request
     ) {
-        log.error("Lỗi không dự kiến tại {}", getPath(request), ex);
+        logFailure(500, "INTERNAL_ERROR", ex, request);
 
         ApiErrorResponse body = createError(
                 500,
@@ -111,6 +115,37 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         );
 
         return ResponseEntity.status(500).body(body);
+    }
+
+    private void logFailure(
+            int status,
+            String code,
+            Exception ex,
+            WebRequest request
+    ) {
+        String method = "UNKNOWN";
+
+        if (request instanceof ServletWebRequest servletRequest) {
+            method = servletRequest.getRequest().getMethod();
+        }
+
+        if (status >= 500) {
+            log.error(
+                    "request_failed method={} status={} code={} exceptionType={}",
+                    method,
+                    status,
+                    code,
+                    ex.getClass().getSimpleName()
+            );
+        } else {
+            log.warn(
+                    "request_rejected method={} status={} code={} exceptionType={}",
+                    method,
+                    status,
+                    code,
+                    ex.getClass().getSimpleName()
+            );
+        }
     }
 
     private ApiErrorResponse createError(
@@ -134,6 +169,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         if (request instanceof ServletWebRequest servletRequest) {
             return servletRequest.getRequest().getRequestURI();
         }
+
         return "";
     }
 }

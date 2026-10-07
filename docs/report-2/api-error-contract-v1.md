@@ -73,7 +73,7 @@ Ví dụ lỗi validation:
 * fieldErrors luôn là một mảng, kể cả khi rỗng.
 * Không trả stack trace, câu SQL, mật khẩu, token hoặc đường dẫn file nội bộ.
 * Lỗi 500 dùng thông báo chung: "Hệ thống gặp lỗi. Vui lòng thử lại sau."
-* Chi tiết lỗi 500 được ghi trong log backend; không ghi mật khẩu hoặc token.
+* Lỗi 500 được ghi log tóm tắt gồm method, status, code và exceptionType; không ghi thông báo exception, stack trace, mật khẩu hoặc token.
 * Không tiết lộ sự tồn tại của tài nguyên khi người dùng không có VIEW.
 * Phản hồi thành công giữ cấu trúc riêng của từng API.
 * ## \## 4. Trạng thái triển khai và kiểm thử
